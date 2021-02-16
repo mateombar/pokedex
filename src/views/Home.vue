@@ -1,50 +1,74 @@
 <template>
   <div class="home">
-    <div class="image_container">
-      <img alt="Vue logo" src="../assets/logo.png">
-    </div>
-    <div class="text_container">
-      <h3>Welcome to Pokédex</h3>
-      <p>The digital encyclopledia created by Proffesor Oak is an invaluable tool to Trainers in the Pókemon world.</p>
-    </div>
-    <router-link class="button-primary home__button" :to="{ name: 'PokemonList'}">
-      Get Started
-    </router-link>
+    <template v-if="loading">
+      <Loader />
+    </template>
+    <template v-else>
+      <div class="image_container">
+        <img alt="Vue logo" src="../assets/pikachu.svg" />
+      </div>
+      <div class="text_container">
+        <h3>Welcome to Pokédex</h3>
+        <p>
+          The digital encyclopledia created by Proffesor Oak is an invaluable
+          tool to Trainers in the Pókemon world.
+        </p>
+      </div>
+      <router-link
+        class="button-primary home__button"
+        :to="{ name: 'PokemonList' }"
+      >
+        Get Started
+      </router-link>
+    </template>
   </div>
 </template>
 
 <script>
+import Loader from "@/components/Loader.vue";
 export default {
-  name: 'Home',
-}
+  name: "Home",
+  components: {
+    Loader,
+  },
+  data() {
+    return {
+      loading: true,
+    };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
+  },
+};
 </script>
 <style scoped>
-  .home{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 30px;
-  }
-  .image_container{
-    width: 325px;
-    height: 288px;
-  }
-  .text_container h3{
-    font-weight: 700px;
-    color: #353535;
-    
-    }
-  .text_container p{
-    color: #5E5E5E;
-  }
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+}
+.image_container {
+  width: 325px;
+  height: 288px;
+}
+.text_container {
+  margin: 50px 0px;
+}
+.text_container h3 {
+  font-weight: 700px;
+  color: #353535;
+}
+.text_container p {
+  color: #5e5e5e;
+}
 
-  .home__button{
-    margin-top: 50px;
+@media screen and (max-width: 600px) {
+  .text_container {
+    width: 90%;
   }
-  @media screen and (max-width: 600px) {
-    .text_container{
-      width: 90%;
-    }
 }
 </style>
