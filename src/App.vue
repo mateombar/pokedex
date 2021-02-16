@@ -15,7 +15,22 @@
 #app {
   font-family: 'latoregular';
   text-align: center;
-  color: #2c3e50;
+}
+.button-primary{
+  padding: 11px 20px;
+  background-color: #F22539;
+  color: white;
+  border-radius: 60px;
+  text-decoration: none;
+  font-weight: 700;
+}
+.button-secondary{
+  padding: 11px 20px;
+  background-color: #BFBFBF;
+  color: white;
+  border-radius: 60px;
+  text-decoration: none;
+  font-weight: 700;
 }
 
 </style>
