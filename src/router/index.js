@@ -13,7 +13,7 @@ const routes = [
   },
   {
     path: '/pokemon-list',
-    name: 'Pokemons',
+    name: 'PokemonList',
     component: PokemonList
   },
 ]
