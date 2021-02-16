@@ -27,10 +27,8 @@
   margin: 0;
   box-sizing: border-box;
 }
-#app {
-  padding: 35px 30px;
-}
 .button-primary {
+  min-width: 150px;
   padding: 11px 20px;
   background-color: #f22539;
   color: white;
@@ -39,6 +37,7 @@
   font-weight: 700;
 }
 .button-secondary {
+  min-width: 150px;
   padding: 11px 20px;
   background-color: #bfbfbf;
   color: white;

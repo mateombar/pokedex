@@ -1,22 +1,24 @@
 <template>
   <div class="pokemonsdashboard">
-    <template v-if="loading">
-      <Loader />
-    </template>
-    <template v-else>
-      <SearchFilter />
-      <section class="pokemons__list--container">
-        <ul>
-          <li v-for="pokemon in pokemons" :key="pokemon.name">
-            <PokemonItem :pokemon="pokemon" />
-          </li>
-        </ul>
-      </section>
-      <footer>
-        <ListButtom />
-        <ListButtom />
-      </footer>
-    </template>
+    <div class="pokemonsdashboard__container">
+      <template v-if="loading">
+        <Loader />
+      </template>
+      <template v-else>
+        <SearchFilter />
+        <section class="pokemonsdashboard__container--list">
+          <ul>
+            <li v-for="pokemon in pokemons" :key="pokemon.name">
+              <PokemonItem :pokemon="pokemon" />
+            </li>
+          </ul>
+        </section>
+      </template>
+    </div>
+    <footer class="pokemonsdashboard__footer">
+      <ListButton class-button="button-primary" image="list" text="All"/>
+      <ListButton class-button="button-secondary" image="star-white" text="Favorites"/>
+    </footer>
   </div>
 </template>
 <script>
@@ -24,14 +26,14 @@ import api from "@/api";
 import Loader from "@/components/Loader.vue";
 import SearchFilter from "@/components/pokemons-dashboard/SearchFilter.vue";
 import PokemonItem from "@/components/pokemons-dashboard/PokemonItem.vue";
-import ListButtom from "@/components/pokemons-dashboard/ListButtom.vue";
+import ListButton from "@/components/pokemons-dashboard/ListButton.vue";
 export default {
   name: "PokemonsDashboard",
   components: {
     Loader,
     SearchFilter,
     PokemonItem,
-    ListButtom,
+    ListButton,
   },
   data() {
     return {
@@ -65,11 +67,34 @@ export default {
   flex-direction: column;
 }
 
-.pokemons__list--container {
-  margin: 20px
+.pokemonsdashboard__container {
+  padding: 35px 30px 0px 30px;
+  overflow: auto;
+  margin-bottom: 80px;
 }
-.pokemons__list--container li{
+.pokemonsdashboard__container--list {
+  margin: 20px;
+}
+.pokemonsdashboard__container--list li {
   list-style: none;
   margin: 10px 0;
+}
+
+.pokemonsdashboard__footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 80px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-shadow: 0px -5px 4px rgba(0, 0, 0, 0.05);
+}
+@media only screen and (max-width: 500px){
+  .pokemonsdashboard__container {
+  padding: 35px 0;
+}
 }
 </style>

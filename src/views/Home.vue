@@ -15,7 +15,7 @@
         </p>
       </div>
       <router-link
-        class="button-primary home__button"
+        class="button-primary"
         :to="{ name: 'PokemonsDashboard' }"
       >
         Get Started
@@ -45,6 +45,7 @@ export default {
 </script>
 <style scoped>
 .home {
+  padding: 35px 30px;
   display: flex;
   justify-content: center;
   align-items: center;
