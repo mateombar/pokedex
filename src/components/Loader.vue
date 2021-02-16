@@ -1,10 +1,6 @@
 <template>
   <div class="Loader">
-    <img
-      class="Loader__image"
-      src="../assets/icons/pokeball.svg"
-      alt="poke loader"
-    />
+      <img src="../assets/icons/pokeball.svg" alt="poke loader" />
   </div>
 </template>
 <script>
@@ -17,9 +13,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: 85vh;
 }
-.Loader__image {
+.Loader img {
   animation: Loader__image 1s linear infinite;
 }
 @keyframes Loader__image {

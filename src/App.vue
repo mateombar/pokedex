@@ -15,6 +15,7 @@
 #app {
   font-family: 'latoregular';
   text-align: center;
+  padding: 35px 30px;
 }
 .button-primary{
   padding: 11px 20px;
