@@ -58,6 +58,7 @@ export default {
   margin: 50px 0px;
 }
 .text_container h3 {
+  margin-bottom: 50px;
   font-weight: 700px;
   color: #353535;
 }
