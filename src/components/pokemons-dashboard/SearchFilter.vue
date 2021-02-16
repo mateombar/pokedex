@@ -1,6 +1,6 @@
 <template>
   <div class="SearchFilter">
-    <input type="text" />
+    <input type="text" placeholder="Search" />
   </div>
 </template>
 <script>
@@ -8,8 +8,7 @@ export default {
   name: "SearchFilter",
   components: {},
   data() {
-    return {
-    };
+    return {};
   },
   mounted() {},
 };
@@ -28,5 +27,10 @@ export default {
   font-family: montserratregular;
   font-size: 1rem;
   /* outline: none; */
+}
+@media only screen and (min-width: 750px) {
+  .SearchFilter input{
+    width: 570px;
+  }
 }
 </style>

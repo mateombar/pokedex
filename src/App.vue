@@ -22,7 +22,7 @@
 * {
   font-family: "latoregular";
   text-align: center;
-  background-color: #f5f5f5;
+  background-color: #E5E5E5;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
