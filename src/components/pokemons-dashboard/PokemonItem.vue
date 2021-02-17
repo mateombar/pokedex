@@ -9,9 +9,10 @@
       </div>
     </article>
     <DetailsModal v-if="isModal" 
-      :pokemon-name="pokemon.name"
+      :pokemonProps="pokemon"
       :is-modal="isModal"
       @close-modal="closeModal"
+      @change-favorite="$emit('change-favorite')"
     />
   </div>
 </template>
