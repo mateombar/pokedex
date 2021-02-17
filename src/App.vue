@@ -22,27 +22,25 @@
 * {
   font-family: "latoregular";
   text-align: center;
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-.button-primary {
-  min-width: 150px;
-  padding: 11px 20px;
-  background-color: #f22539;
-  color: white;
-  border-radius: 60px;
-  text-decoration: none;
-  font-weight: 700;
-}
+.button-primary,
 .button-secondary {
   min-width: 150px;
   padding: 11px 20px;
-  background-color: #bfbfbf;
   color: white;
   border-radius: 60px;
   text-decoration: none;
   font-weight: 700;
+  cursor: pointer;
+}
+.button-primary {
+  background-color: #f22539;
+}
+.button-secondary {
+  background-color: #bfbfbf;
 }
 </style>

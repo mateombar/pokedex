@@ -1,5 +1,5 @@
 <template>
-  <a type="button" :class="classButton">
+  <a type="button" :class="classButton" @click="$emit('toggle-list')">
     <img :src="getImage" alt="" />
     {{ text }}
   </a>

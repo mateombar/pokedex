@@ -8,16 +8,29 @@
         <SearchFilter />
         <section class="pokemonsdashboard__container--list">
           <ul>
-            <li v-for="pokemon in pokemons" :key="pokemon.name">
-              <PokemonItem :pokemon="pokemon" @change-favorite="pokemon.favorite = !pokemon.favorite"/>
+            <li v-for="pokemon in switchList" :key="pokemon.name">
+              <PokemonItem
+                :pokemon="pokemon"
+                @change-favorite="pokemon.favorite = !pokemon.favorite"
+              />
             </li>
           </ul>
         </section>
       </template>
     </div>
     <footer class="pokemonsdashboard__footer">
-      <ListButton class-button="button-secondary" image="list" text="All"/>
-      <ListButton class-button="button-primary" image="star-white" text="Favorites"/>
+      <ListButton
+        @toggle-list="favoriteFilter = false"
+        class-button="button-secondary"
+        image="list"
+        text="All"
+      />
+      <ListButton
+        @toggle-list="favoriteFilter = true"
+        class-button="button-primary"
+        image="star-white"
+        text="Favorites"
+      />
     </footer>
   </div>
 </template>
@@ -58,12 +71,14 @@ export default {
       }
     },
   },
-  computed:{
-    switchList(){
-
-      // RETURN ALL API DATA || RETURN API FAVORITE DATA
-    }
-  }
+  computed: {
+    switchList() {
+      if (this.favoriteFilter) {
+        return this.pokemons.filter((pokemon) => pokemon.favorite);
+      }
+      return this.pokemons;
+    },
+  },
 };
 </script>
 <style scoped>
@@ -99,9 +114,9 @@ export default {
   width: 100%;
   box-shadow: 0px -5px 4px rgba(0, 0, 0, 0.05);
 }
-@media only screen and (max-width: 500px){
+@media only screen and (max-width: 500px) {
   .pokemonsdashboard__container {
-  padding: 35px 0;
-}
+    padding: 35px 0;
+  }
 }
 </style>
