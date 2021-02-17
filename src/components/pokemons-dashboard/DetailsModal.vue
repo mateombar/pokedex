@@ -1,5 +1,5 @@
 <template>
-  <div id="myModal" class="modal">
+  <div id="myModal" class="modal">    
     <div class="modal-content">
       <div class="modal-header">
         <span class="close" @click="$emit('close-modal', false)"
@@ -10,8 +10,9 @@
         <div class="modal_body--image">
           <img :src="pokemon.sprites.front_default" alt="Pokemon Image" />
         </div>
-        <div class="modal_body--text">
-          <p><strong>Name:</strong> {{ pokemon.name }}</p>
+        <div class="modal_body--text">          
+          <input v-model="pokemonData" id="pokedata" type="text">
+          <p><strong>Name:</strong> {{ capitalizedName }}</p>
           <hr />
           <p><strong>Weigth:</strong> {{ pokemon.weight }}</p>
           <hr />
@@ -22,7 +23,9 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a type="button" class="button-primary">Share to my friends</a>
+        <a type="button" class="button-primary" @click="copyClipboard"
+          >Share to my friends</a
+        >
         <div class="star__container" @click="$emit('change-favorite')">
           <img :src="favorite" alt="" />
         </div>
@@ -68,25 +71,50 @@ export default {
   },
   methods: {
     async fetchData() {
-      const data = await api.pokemons.getPokemonByName(this.pokemonProps.name);
-      console.log(data);
-      this.pokemon = data;
+      try {
+        const data = await api.pokemons.getPokemonByName(
+          this.pokemonProps.name
+        );
+        this.pokemon = data;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    capitalized(array) {
+      return array[0].toUpperCase() + array.slice(1);
+    },
+    copyClipboard() {
+      const copyText = document.getElementById("pokedata");
+      console.log(copyText);
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+    },
+    types() {
+      let types = [];
+      this.pokemon.types.forEach((item) => {
+        types.push(this.capitalized(item.type.name));
+      });
+      return types.join(", ");
     },
   },
   computed: {
     pokemonTypes() {
-      let types = [];
-      this.pokemon.types.forEach((item) => {
-        types.push(item.type.name);
-      });
-      console.log(types);
-      return types;
+      return this.types();
     },
     favorite() {
       if (this.pokemonProps.favorite) {
         return starGold;
       }
       return starGray;
+    },
+    capitalizedName() {
+      return this.capitalized(this.pokemon.name);
+    },
+    pokemonData() {
+      return `Pokemon: ${this.pokemon.name}, Weight: ${
+        this.pokemon.weight
+      }, Height: ${this.pokemon.height}, Types: ${this.types()}`;
     },
   },
 };
@@ -116,6 +144,7 @@ export default {
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
   animation-duration: 0.4s;
+  border-radius: 5px;
 }
 
 .modal-header {
@@ -138,11 +167,11 @@ export default {
 }
 
 .modal_body {
-  background-color: none;
+  background-color: initial;
   width: 100%;
-  background-color: white;
 }
 .modal_body--image {
+  border-radius: 5px 5px 0 0;
   background-image: url(../../assets/landscape.svg);
   width: 100%;
   height: 190px;
@@ -154,11 +183,17 @@ export default {
   object-fit: contain;
   margin-top: 13px;
 }
-
-.modal_body--text {
-  background-color: none;
-  width: 100%;
+#pokedata {
+  /* visibility: hidden; */
+  height: 0px;
+  width: 0px;
+  color: white;
   background-color: white;
+  border: 0;
+}
+.modal_body--text {
+  width: 100%;
+  background-color: initial;
   padding: 10px 30px 0 30px;
 }
 .modal_body--text p {
@@ -183,7 +218,7 @@ img {
 
 .modal-footer {
   padding: 20px 20px;
-  background-color: white;
+  background-color: initial;
   color: white;
   display: flex;
   justify-content: space-between;
