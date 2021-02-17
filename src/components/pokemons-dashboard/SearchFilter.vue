@@ -1,12 +1,15 @@
 <template>
   <div class="SearchFilter">
-    <input type="text" placeholder="Search" />
+    <input type="text" placeholder="Search" :value="searchQuery"
+      @input="$emit('input', $event.target.value)"/>
   </div>
 </template>
 <script>
 export default {
   name: "SearchFilter",
-  components: {},
+  props: {
+    searchQuery: String,
+  },
   data() {
     return {};
   },

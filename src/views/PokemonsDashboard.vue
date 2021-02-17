@@ -5,10 +5,10 @@
         <Loader />
       </template>
       <template v-else>
-        <SearchFilter />
+        <SearchFilter v-model="inputQuery" />
         <section class="pokemonsdashboard__container--list">
           <ul>
-            <li v-for="pokemon in switchList" :key="pokemon.name">
+            <li v-for="(pokemon, index) in filteredList" :key="index">
               <PokemonItem
                 :pokemon="pokemon"
                 @change-favorite="pokemon.favorite = !pokemon.favorite"
@@ -70,11 +70,25 @@ export default {
         console.error(error);
       }
     },
+    filteredQuery(list) {
+      return list.filter((list) => {
+        return list.name.toLowerCase().includes(this.inputQuery.toLowerCase());
+      });
+    },
   },
   computed: {
-    switchList() {
+    filteredList() {
       if (this.favoriteFilter) {
-        return this.pokemons.filter((pokemon) => pokemon.favorite);
+        const favorite = this.pokemons.filter((pokemon) => {
+          return pokemon.favorite;
+        });
+        if (this.inputQuery) {
+          return this.filteredQuery(favorite);
+        }
+        return favorite
+      }
+      if (this.inputQuery) {
+        return this.filteredQuery(this.pokemons);
       }
       return this.pokemons;
     },
