@@ -7,14 +7,30 @@
       <template v-else>
         <SearchFilter v-model="inputQuery" />
         <section class="pokemonsdashboard__container--list">
-          <ul>
-            <li v-for="(pokemon, index) in filteredList" :key="index">
-              <PokemonItem
-                :pokemon="pokemon"
-                @change-favorite="pokemon.favorite = !pokemon.favorite"
-              />
-            </li>
-          </ul>
+          <div v-if="!filteredList.length">
+            <h1>Uh-oh!</h1>
+            <h5>You look lost on your journey!</h5>
+            <div class="back-home">
+              <router-link
+                :to="{ name: 'Home' }"
+                type="button"
+                class="button-primary"
+              >
+                Go back home
+              </router-link>
+            </div>
+          </div>
+          <template v-else >
+            <ul>
+              <li v-for="(pokemon, index) in filteredList" :key="index">
+                <PokemonItem
+                  :pokemon="pokemon"
+                  @change-favorite="pokemon.favorite = !pokemon.favorite"
+                />
+              </li>
+            </ul>
+          </template>
+          
         </section>
       </template>
     </div>
@@ -85,7 +101,7 @@ export default {
         if (this.inputQuery) {
           return this.filteredQuery(favorite);
         }
-        return favorite
+        return favorite;
       }
       if (this.inputQuery) {
         return this.filteredQuery(this.pokemons);
@@ -110,6 +126,24 @@ export default {
 }
 .pokemonsdashboard__container--list {
   margin: 20px;
+}
+.pokemonsdashboard__container--list h1 {
+  color: #353535;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 43.2px;
+  margin-top: 50px;
+}
+.pokemonsdashboard__container--list h5 {
+  font-weight: 500;
+  margin-top: 10px;
+  font-size: 20px;
+  line-height: 30px;
+  margin-top: 10px;
+  color: #5e5e5e;
+}
+.pokemonsdashboard__container--list .back-home {
+  margin-top: 25px;
 }
 .pokemonsdashboard__container--list li {
   list-style: none;
