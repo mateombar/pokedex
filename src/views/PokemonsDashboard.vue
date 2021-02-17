@@ -8,17 +8,7 @@
         <SearchFilter v-model="inputQuery" />
         <section class="pokemonsdashboard__container--list">
           <div v-if="!filteredList.length">
-            <h1>Uh-oh!</h1>
-            <h5>You look lost on your journey!</h5>
-            <div class="back-home">
-              <router-link
-                :to="{ name: 'Home' }"
-                type="button"
-                class="button-primary"
-              >
-                Go back home
-              </router-link>
-            </div>
+            <NotFound/>
           </div>
           <template v-else >
             <ul>
@@ -56,6 +46,7 @@ import Loader from "@/components/Loader.vue";
 import SearchFilter from "@/components/pokemons-dashboard/SearchFilter.vue";
 import PokemonItem from "@/components/pokemons-dashboard/PokemonItem.vue";
 import ListButton from "@/components/pokemons-dashboard/ListButton.vue";
+import NotFound from "@/components/NotFound.vue";
 export default {
   name: "PokemonsDashboard",
   components: {
@@ -63,6 +54,7 @@ export default {
     SearchFilter,
     PokemonItem,
     ListButton,
+    NotFound
   },
   data() {
     return {
@@ -126,24 +118,6 @@ export default {
 }
 .pokemonsdashboard__container--list {
   margin: 20px;
-}
-.pokemonsdashboard__container--list h1 {
-  color: #353535;
-  font-size: 36px;
-  font-weight: 700;
-  line-height: 43.2px;
-  margin-top: 50px;
-}
-.pokemonsdashboard__container--list h5 {
-  font-weight: 500;
-  margin-top: 10px;
-  font-size: 20px;
-  line-height: 30px;
-  margin-top: 10px;
-  color: #5e5e5e;
-}
-.pokemonsdashboard__container--list .back-home {
-  margin-top: 25px;
 }
 .pokemonsdashboard__container--list li {
   list-style: none;
