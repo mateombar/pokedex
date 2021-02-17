@@ -9,15 +9,15 @@
         <section class="pokemonsdashboard__container--list">
           <ul>
             <li v-for="pokemon in pokemons" :key="pokemon.name">
-              <PokemonItem :pokemon="pokemon" />
+              <PokemonItem :pokemon="pokemon" @change-favorite="pokemon.favorite = !pokemon.favorite"/>
             </li>
           </ul>
         </section>
       </template>
     </div>
     <footer class="pokemonsdashboard__footer">
-      <ListButton class-button="button-primary" image="list" text="All"/>
-      <ListButton class-button="button-secondary" image="star-white" text="Favorites"/>
+      <ListButton class-button="button-secondary" image="list" text="All"/>
+      <ListButton class-button="button-primary" image="star-white" text="Favorites"/>
     </footer>
   </div>
 </template>
@@ -40,6 +40,7 @@ export default {
       loading: true,
       inputQuery: "",
       pokemons: [],
+      favoriteFilter: false,
     };
   },
   mounted() {
@@ -57,6 +58,12 @@ export default {
       }
     },
   },
+  computed:{
+    switchList(){
+
+      // RETURN ALL API DATA || RETURN API FAVORITE DATA
+    }
+  }
 };
 </script>
 <style scoped>

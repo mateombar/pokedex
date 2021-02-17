@@ -8,10 +8,18 @@ async function callApi(endpoint){
     return data;
 }
 
+function favorites(data){
+    data.results.map(result =>{
+        result.favorite = false;
+    })
+    return data
+}
+
 const api = {
     pokemons: {
-        getPokemons(){
-            return callApi('/pokemon/');
+       async getPokemons(){
+            const data = await callApi('/pokemon/');
+            return favorites(data);
         },
         async getPokemonByName(pokeName){
             return callApi(`/pokemon/${pokeName}`);
