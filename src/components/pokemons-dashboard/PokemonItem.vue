@@ -1,24 +1,46 @@
 <template>
-  <article class="PokemonItem">
-    <p>{{ pokemon.name }}</p>
-    <div class="star__container" @click="$emit('change-favorite')">
-      <img :src="favorite" alt="" />
-    </div>
-  </article>
+  <div>
+    <article class="PokemonItem">
+      <div class="PokemonItem__text-container"  @click="showModal">
+        <p>{{ pokemon.name }}</p>
+      </div>
+      <div class="star__container" @click="$emit('change-favorite')">
+        <img :src="favorite" alt="" />
+      </div>
+    </article>
+    <DetailsModal v-if="isModal" 
+      :pokemon-name="pokemon.name"
+      :is-modal="isModal"
+      @close-modal="closeModal"
+    />
+  </div>
 </template>
 <script>
 import starGold from "@/assets/icons/star-gold.svg";
 import starGray from "@/assets/icons/star-gray.svg";
+import DetailsModal from "@/components/pokemons-dashboard/DetailsModal.vue";
 export default {
   name: "PokemonItem",
+  components: {
+    DetailsModal,
+  },
   props: {
     pokemon: Object,
   },
   data() {
-    return {};
+    return {
+      isModal: false,
+    };
   },
   mounted() {},
-  methods: {},
+  methods: {
+    showModal() {
+      this.isModal = true;
+    },
+    closeModal(action) {
+      this.isModal = action;
+    },
+  },
   computed: {
     favorite() {
       if (this.pokemon.favorite) {
@@ -38,18 +60,23 @@ export default {
   height: 60px;
   background-color: white;
   border-radius: 5px;
+}
+.PokemonItem .PokemonItem__text-container {
+  cursor: pointer;
   padding: 17px 15px 17px 20px;
+  width: 90%;
+  background-color: initial;
 }
 .PokemonItem p {
-  max-width: 200px;
   text-align: left;
   color: 353535;
-  background-color: white;
+  background-color: initial;
 }
 .PokemonItem p::first-letter {
   text-transform: uppercase;
 }
 .star__container {
+  margin-right: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,8 +95,8 @@ export default {
   .PokemonItem {
     width: 570px;
   }
-  .PokemonItem p {
-    max-width: 400px;
+  .PokemonItem .PokemonItem__text-container {
+    max-width: 100%;
   }
 }
 </style>
