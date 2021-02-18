@@ -28,13 +28,15 @@
       <ListButton
         @toggle-list="favoriteFilter = false"
         class-button="button-secondary"
-        image="list"
+        image="list" 
+        alt-details="Switch All list"
         text="All"
       />
       <ListButton
         @toggle-list="favoriteFilter = true"
         class-button="button-primary"
         image="star-white"
+        alt-details="Switch Favorite list"
         text="Favorites"
       />
     </footer>

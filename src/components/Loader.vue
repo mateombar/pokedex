@@ -1,6 +1,6 @@
 <template>
   <div class="Loader">
-      <img src="../assets/icons/pokeball.svg" alt="poke loader" />
+      <img src="../assets/icons/pokeball.svg" alt="pokeball loader" />
   </div>
 </template>
 <script>

@@ -27,7 +27,7 @@
           >Share to my friends</a
         >
         <div class="star__container" @click="$emit('change-favorite')">
-          <img :src="favorite" alt="" />
+          <img :src="favorite" alt="favorite button" />
         </div>
       </div>
     </div>

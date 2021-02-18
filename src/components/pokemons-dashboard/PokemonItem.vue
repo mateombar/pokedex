@@ -5,7 +5,7 @@
         <p>{{ pokemon.name }}</p>
       </div>
       <div class="star__container" @click="$emit('change-favorite')">
-        <img :src="favorite" alt="" />
+        <img :src="favorite" alt="Favorite button" />
       </div>
     </article>
     <DetailsModal v-if="isModal" 

@@ -5,7 +5,7 @@
     </template>
     <template v-else>
       <div class="image_container">
-        <img alt="Vue logo" src="../assets/pikachu.svg" />
+        <img alt="Pikachu Logo" src="../assets/pikachu.svg" />
       </div>
       <div class="text_container">
         <h3>Welcome to Pokédex</h3>

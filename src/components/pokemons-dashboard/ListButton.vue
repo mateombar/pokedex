@@ -1,6 +1,6 @@
 <template>
   <a type="button" :class="classButton" @click="$emit('toggle-list')">
-    <img :src="getImage" alt="" />
+    <img :src="getImage" :alt="altDetails" />
     {{ text }}
   </a>
 </template>
@@ -12,6 +12,7 @@ export default {
   props: {
     classButton: String,
     image: String,
+    altDetails: String,
     text: String,
   },
   data() {
